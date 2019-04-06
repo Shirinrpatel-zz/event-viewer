@@ -24,11 +24,12 @@
 
     <hr/>
 
-    <div class="row">
+    <div class="row padding-bottom-10">
         <div class="col-md-2">Sessions</div>
-        <div class="col-md-2">
+        <div class="col-md-8">
             <a (click)="addSession()">Add Session</a>
         </div>
+        <div class="col-md-2">&nbsp;</div>
     </div>
 
     <session-list *ngIf="!addMode" [sessions]="event?.sessions"></session-list>
