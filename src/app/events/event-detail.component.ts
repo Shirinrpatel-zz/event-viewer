@@ -10,14 +10,16 @@ import { IEvent } from './shared/event.model';
     styles: [`
         .container { padding-left: 10px; padding-right: 10px; }
         .event-image { height: 100px; }
-        a { cursor: pointer; text-decoration: none; float: right }
-        padding-bottom-10 { padding-bottom: 10px; }
+        a { cursor: pointer; text-decoration: none; }
+        .margin-bottom-10 { margin-bottom: 10px; }
     `]
 })
 export class EventDetailComponent implements OnInit {
 
     event: IEvent;
     addMode: boolean;
+    filterBy: string = 'all';
+    sortBy: string = 'votes';
 
     constructor(private eventService: EventService, private activeRoute: ActivatedRoute) {
 
