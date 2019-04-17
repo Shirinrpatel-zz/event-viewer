@@ -21,8 +21,15 @@ import { CreateSessionComponent } from './events/create-session.component';
 import { SessionListComponent } from './events/session-list.component';
 import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { DurationPipe } from './events/shared/duration.pipe';
+import { JQ_TOKEN } from './common/jquery.service';
+import { SimpleModalComponent } from './common/simple-modal.component';
+import { ModalTriggerDirective } from './common/modal-trigger.directive';
+import { UpvoteComponent } from './events/upvote.component';
+import { VoterService } from './events/voter.service';
 
-declare let toastr: Toaster;
+let toastr: Toaster = window['toastr'];
+let jQuery = window['$'];
+
 
 @NgModule({
   imports: [
@@ -42,14 +49,19 @@ declare let toastr: Toaster;
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent,
+    ModalTriggerDirective,
+    UpvoteComponent
   ],
   providers: [
     EventService,
     { provide: TOASTER_TOKEN, useValue: toastr },
+    { provide: JQ_TOKEN, useValue: jQuery },
     EventRouteActivatorService,
     EventListResolver,
     AuthService,
+    VoterService,
     {
       provide: 'canDeactivateCreateEvent',
       useValue: canDeactivateCreateEvent
