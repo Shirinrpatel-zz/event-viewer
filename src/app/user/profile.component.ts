@@ -35,9 +35,11 @@ export class ProfileComponent implements OnInit {
 
   submit(formGroupControl) {
     if (this.profileGroup.valid) {
-      this.authService.updateUserDetails(formGroupControl.controls.firstName.value, formGroupControl.controls.lastName.value);
-      this.toastr.success('done');
-      this.router.navigate(['events']);
+      this.authService.updateUserDetails(formGroupControl.controls.firstName.value, formGroupControl.controls.lastName.value)
+      .subscribe(() => {
+        this.toastr.success('done');
+        this.router.navigate(['events']);
+      })      
     }    
   }
 

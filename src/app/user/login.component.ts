@@ -12,14 +12,20 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-    constructor(private auth: AuthService, private router: Router) {
+    loginInvalid = false;
 
+    constructor(private auth: AuthService, private router: Router) {
     }
 
     login(formValue) {
-        this.auth.login(formValue.userName, formValue.password);
-
-        this.router.navigate(['events']);
+        this.auth.login(formValue.userName, formValue.password)
+            .subscribe(response => {
+                if (!response) {
+                    this.loginInvalid = true;
+                } else {
+                    this.router.navigate(['events']);
+                }
+            });        
     }
 
     cancel() {
